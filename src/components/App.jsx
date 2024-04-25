@@ -10,7 +10,6 @@ export const App = () => {
   let getLocalStorageData
   try {
     getLocalStorageData = JSON.parse(localStorage.getItem('localContacts'))
-    getLocalStorageData=getLocalStorageData
   }
   catch {
     getLocalStorageData=[]
