@@ -10,11 +10,10 @@ export const App = () => {
   let getLocalStorageData
   try {
     getLocalStorageData = JSON.parse(localStorage.getItem('localContacts'))
-    getLocalStorageData=getLocalStorageData.contacts
-    console.log(getLocalStorageData)
+    getLocalStorageData=getLocalStorageData
   }
   catch {
-    getLocalStorageData = null
+    getLocalStorageData=[]
   }
   const state = {
     contacts:getLocalStorageData,
@@ -42,6 +41,12 @@ export const App = () => {
       name: '',
       number: '',
     });
+
+    try {
+    localStorage.setItem('localContacts', JSON.stringify(userData.contacts));
+  } catch (error) {
+    console.error('Błąd podczas zapisywania danych do local storage:', error);
+  }
   }
 
 
@@ -66,10 +71,8 @@ export const App = () => {
 
     console.log(userData)
     try {
-    localStorage.setItem('userData', JSON.stringify(userData.contacts));
-    console.log('Dane zostały zapisane do local storage.');
+    localStorage.setItem('localContacts', JSON.stringify(userData.contacts));
   } catch (error) {
-  // Obsługa błędu
     console.error('Błąd podczas zapisywania danych do local storage:', error);
   }
     

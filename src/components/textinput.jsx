@@ -1,5 +1,4 @@
 export const TextInput = ({ onChange, onSubmit, value}) => {
-    console.log(value)
     return (
     <div>  
         <p>Contacts</p>
