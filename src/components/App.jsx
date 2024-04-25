@@ -68,6 +68,8 @@ export const App = () => {
       number: '',
     });
 
+    setInputValue()
+
     console.log(userData)
     try {
     localStorage.setItem('localContacts', JSON.stringify(userData.contacts));
