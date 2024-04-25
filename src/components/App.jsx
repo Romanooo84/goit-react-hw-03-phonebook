@@ -7,19 +7,25 @@ import { nanoid } from "nanoid";
 
 
 export const App = () => {
+  let getLocalStorageData
+  try {
+    getLocalStorageData = JSON.parse(localStorage.getItem('localContacts'))
+    getLocalStorageData=getLocalStorageData.contacts
+    console.log(getLocalStorageData)
+  }
+  catch {
+    getLocalStorageData = null
+  }
   const state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts:getLocalStorageData,
     filter: '',
     name: '',
     number: '',
   };
   const [userData, setUserData] = useState(state);
   const [inputValue, setInputValue] = useState();
+
+  console.log(userData)
   
 
   const onChange = event => {
@@ -58,7 +64,14 @@ export const App = () => {
       number: '',
     });
 
-    setInputValue()
+    console.log(userData)
+    try {
+    localStorage.setItem('userData', JSON.stringify(userData.contacts));
+    console.log('Dane zostały zapisane do local storage.');
+  } catch (error) {
+  // Obsługa błędu
+    console.error('Błąd podczas zapisywania danych do local storage:', error);
+  }
     
   }; 
 
