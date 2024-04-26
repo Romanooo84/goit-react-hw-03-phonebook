@@ -85,7 +85,7 @@ export const App = () => {
   } catch (error) {
     console.error('Błąd podczas zapisywania danych do local storage:', error);
   }
-  },[onSubmit])
+  },[onSubmit,userData.contacts])
 
   return (
     <div>
