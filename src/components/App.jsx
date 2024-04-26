@@ -1,7 +1,7 @@
 import { TextInput } from "./textinput";
 import { Contacts } from "./contacts";
 import { Filter } from "./filter";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nanoid } from "nanoid";
 
 
@@ -32,7 +32,6 @@ export const App = () => {
   const [userData, setUserData] = useState(state);
   const [inputValue, setInputValue] = useState();
 
-  
 
   const onChange = event => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
@@ -77,15 +76,16 @@ export const App = () => {
     });
 
     setInputValue()
+    
+  }; 
 
-    console.log(userData)
+  useEffect(() => {
     try {
     localStorage.setItem('localContacts', JSON.stringify(userData.contacts));
   } catch (error) {
     console.error('Błąd podczas zapisywania danych do local storage:', error);
   }
-    
-  }; 
+  },[onSubmit])
 
   return (
     <div>
